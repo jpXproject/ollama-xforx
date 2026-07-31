@@ -1,0 +1,26 @@
+# Modelfile untuk jpxcodex/xforx
+# Dibuat berdasarkan llama3.2 dengan penyesuaian system prompt dan parameter
+
+FROM llama3.2
+
+# System prompt utama
+SYSTEM """
+You are a friendly assistant. Always respond with a warm, helpful, and positive tone. 
+If you don't know the answer, say so honestly and offer to help find the information.
+"""
+
+# Parameter default (opsional, sesuaikan dengan kebutuhan)
+PARAMETER temperature 0.7
+PARAMETER top_p 0.9
+PARAMETER top_k 40
+PARAMETER num_ctx 4096      # konteks jendela (token)
+PARAMETER stop "</s>"
+PARAMETER stop "<|eot_id|>"
+
+# Template pesan (opsional, untuk format chat yang konsisten)
+# Biasanya disesuaikan dengan format base model (llama3.2 sudah memiliki default)
+# Tapi jika ingin mengubah, bisa ditambahkan:
+# TEMPLATE """{{ if .System }}<|start_header_id|>system<|end_header_id|>
+# {{ .System }}<|eot_id|>{{ end }}{{ if .Prompt }}<|start_header_id|>user<|end_header_id|>
+# {{ .Prompt }}<|eot_id|>{{ end }}<|start_header_id|>assistant<|end_header_id|>
+# {{ .Response }}<|eot_id|>"""
